@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SmartDorm - Quản lý Ký túc xá</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div id="login-screen" class="screen active">
+        <div class="login-card">
+            <h2>SmartDorm</h2>
+            <p>Hệ thống Quản lý Ký túc xá Sinh viên</p>
+            <form id="login-form">
+                <div class="form-group">
+                    <label>Tên đăng nhập</label>
+                    <input type="text" id="username" placeholder="Nhập username..." required>
+                </div>
+                <div class="form-group">
+                    <label>Mật khẩu</label>
+                    <input type="password" id="password" placeholder="Nhập mật khẩu..." required>
+                </div>
+                <button type="submit" class="btn btn-primary">Đăng Nhập</button>
+            </form>
+            <div class="demo-accounts">
+                <p><strong>Tài khoản Demo:</strong></p>
+                <p>Sinh viên: <code>student</code> / <code>123456</code></p>
+                <p>Quản lý: <code>manager</code> / <code>123456</code></p>
+            </div>
+        </div>
+    </div>
+
+    <div id="main-screen" class="screen">
+        <header class="navbar">
+            <div class="nav-brand">SmartDorm - KTX Đại học</div>
+            <div class="nav-user">
+                <span id="user-display-name">Xin chào, User</span>
+                <button id="btn-logout" class="btn btn-sm btn-danger">Đăng xuất</button>
+            </div>
+        </header>
+
+        <div class="container">
+            <aside class="sidebar">
+                <ul id="nav-links"></ul>
+            </aside>
+
+            <main class="content">
+                <section id="tab-dashboard" class="tab-content active">
+                    <h2>Tổng quan hệ thống</h2>
+                    <div class="stats-grid">
+                        <div class="stat-card">
+                            <h3>Tổng số phòng</h3>
+                            <p id="stat-rooms">0</p>
+                        </div>
+                        <div class="stat-card">
+                            <h3>Phòng còn trống</h3>
+                            <p id="stat-empty-rooms">0</p>
+                        </div>
+                        <div class="stat-card">
+                            <h3>Sinh viên nội trú</h3>
+                            <p id="stat-students">0</p>
+                        </div>
+                        <div class="stat-card">
+                            <h3>Yêu cầu chờ duyệt</h3>
+                            <p id="stat-pending">0</p>
+                        </div>
+                    </div>
+                </section>
+
+                <section id="tab-rooms" class="tab-content">
+                    <h2>Quản lý & Đăng ký Phòng</h2>
+                    <div class="action-bar">
+                        <input type="text" id="search-room" placeholder="Tìm kiếm theo mã phòng...">
+                        <button id="btn-add-room" class="btn btn-primary" style="display:none;">+ Thêm phòng mới</button>
+                    </div>
+                    <div class="table-responsive">
+                        <table id="rooms-table">
+                            <thead>
+                                <tr>
+                                    <th>Mã phòng</th>
+                                    <th>Tòa nhà</th>
+                                    <th>Loại/Sức chứa</th>
+                                    <th>Đang ở</th>
+                                    <th>Giá (VNĐ/tháng)</th>
+                                    <th>Trạng thái</th>
+                                    <th>Thao tác</th>
+                                </tr>
+                            </thead>
+                            <tbody></tbody>
+                        </table>
+                    </div>
+                </section>
+
+                <section id="tab-registrations" class="tab-content">
+                    <h2>Danh sách Đơn Đăng ký Phòng</h2>
+                    <div class="table-responsive">
+                        <table id="registrations-table">
+                            <thead>
+                                <tr>
+                                    <th>STT</th>
+                                    <th>Sinh viên</th>
+                                    <th>Phòng đăng ký</th>
+                                    <th>Ngày đăng ký</th>
+                                    <th>Trạng thái</th>
+                                    <th>Thao tác</th>
+                                </tr>
+                            </thead>
+                            <tbody></tbody>
+                        </table>
+                    </div>
+                </section>
+
+                <section id="tab-payments" class="tab-content">
+                    <h2>Quản lý Hóa đơn & Thanh toán</h2>
+                    <div class="table-responsive">
+                        <table id="payments-table">
+                            <thead>
+                                <tr>
+                                    <th>Tháng</th>
+                                    <th>Sinh viên</th>
+                                    <th>Số tiền (VNĐ)</th>
+                                    <th>Ngày thanh toán</th>
+                                    <th>Trạng thái</th>
+                                    <th>Thao tác</th>
+                                </tr>
+                            </thead>
+                            <tbody></tbody>
+                        </table>
+                    </div>
+                </section>
+
+                <section id="tab-maintenance" class="tab-content">
+                    <h2>Báo hỏng thiết bị & Yêu cầu sửa chữa</h2>
+                    <div class="action-bar" id="maintenance-action-bar">
+                        <button id="btn-add-maintenance" class="btn btn-primary">+ Gửi yêu cầu báo hỏng</button>
+                    </div>
+                    <div class="table-responsive">
+                        <table id="maintenance-table">
+                            <thead>
+                                <tr>
+                                    <th>Tiêu đề sự cố</th>
+                                    <th>Phòng</th>
+                                    <th>Mô tả chi tiết</th>
+                                    <th>Trạng thái</th>
+                                    <th>Thao tác</th>
+                                </tr>
+                            </thead>
+                            <tbody></tbody>
+                        </table>
+                    </div>
+                </section>
+            </main>
+        </div>
+    </div>
+
+    <div id="modal-maintenance" class="modal">
+        <div class="modal-content">
+            <h3>Gửi yêu cầu sửa chữa thiết bị</h3>
+            <form id="maintenance-form">
+                <div class="form-group">
+                    <label>Tiêu đề sự cố</label>
+                    <input type="text" id="maint-title" placeholder="Ví dụ: Hỏng quạt trần..." required>
+                </div>
+                <div class="form-group">
+                    <label>Mô tả chi tiết</label>
+                    <textarea id="maint-desc" rows="3" placeholder="Mô tả tình trạng hỏng..." required></textarea>
+                </div>
+                <div class="modal-actions">
+                    <button type="button" class="btn btn-secondary" onclick="closeModal()">Hủy</button>
+                    <button type="submit" class="btn btn-primary">Gửi yêu cầu</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="js/app.js"></script>
+</body>
+</html>
